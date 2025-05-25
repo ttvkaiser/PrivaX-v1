@@ -20,27 +20,22 @@ local Tabs = {
         Title = "Home",
         Icon = "house"
     },
-local Tabs = {
     Main = Window:CreateTab{
         Title = "Main",
         Icon = "align-justify"
     },
-  local Tabs = {
     Rebirth = Window:CreateTab{
         Title = "Rebirths",
         Icon = "biceps-flexed"
     },
-  local Tabs = {
     Kill = Window:CreateTab{
         Title = "Auto Kill",
         Icon = "skull"
     },
-   local Tabs = {
     Misc = Window:CreateTab{
         Title = "Miscellaneous",
         Icon = "command"
-    },
-     local Tabs = {
+    }
     Status = Window:CreateTab{
         Title = "Status",
         Icon = "circle-plus"
