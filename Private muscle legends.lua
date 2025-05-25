@@ -30,8 +30,8 @@ local Tabs = {
         Title = "Rebirths",
         Icon = "biceps-flexed"
     },
-  Kill Tabs = {
-    Main = Window:CreateTab{
+  local Tabs = {
+    Kill = Window:CreateTab{
         Title = "Auto Kill",
         Icon = "skull"
     },
