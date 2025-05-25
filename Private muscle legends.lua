@@ -16,9 +16,34 @@ local Window = Library:CreateWindow{
 
 -- Fluent Renewed provides ALL 1544 Lucide 0.469.0 https://lucide.dev/icons/ Icons and ALL 9072 Phosphor 2.1.0 https://phosphoricons.com/ Icons for the tabs, icons are optional
 local Tabs = {
+    Home = Window:CreateTab{
+        Title = "Home",
+        Icon = "house"
+    },
+local Tabs = {
     Main = Window:CreateTab{
         Title = "Main",
-        Icon = "phosphor-users-bold"
+        Icon = "align-justify"
+    },
+  local Tabs = {
+    Rebirth = Window:CreateTab{
+        Title = "Rebirths",
+        Icon = "biceps-flexed"
+    },
+  Kill Tabs = {
+    Main = Window:CreateTab{
+        Title = "Auto Kill",
+        Icon = "skull"
+    },
+   local Tabs = {
+    Misc = Window:CreateTab{
+        Title = "Miscellaneous",
+        Icon = "command"
+    },
+     local Tabs = {
+    Status = Window:CreateTab{
+        Title = "Status",
+        Icon = "circle-plus"
     },
     Settings = Window:CreateTab{
         Title = "Settings",
