@@ -55,6 +55,122 @@ Library:Notify{
     Duration = 5 -- Set to nil to make the notification not disappear
 }
 
+Tabs.Home:CreateParagraph("Aligned Paragraph", {
+    Title = "---Local Player Configuration---",
+    Content = "",
+    TitleAlignment = "Middle",
+    ContentAlignment = Enum.TextXAlignment.Center
+})
+
+local speed = 16 -- Default speed
+
+-- Input field
+local Input = Tabs.Home:AddInput("Input", {
+    Title = "Speed Input",
+    Default = tostring(speed),
+    Placeholder = "Enter Speed",
+    Numeric = true,
+    Finished = false,
+    Callback = function(Value)
+        local num = tonumber(Value)
+        if num then
+            speed = num
+            print("Speed set to:", speed)
+            if Options.MyToggle.Value then
+                applySpeed()
+            end
+        end
+    end
+})
+
+-- Toggle
+local Toggle = Tabs.Home:AddToggle("MyToggle", {
+    Title = "Enable Speed",
+    Default = false
+})
+
+-- Utility to apply speed
+local function applySpeed()
+    local player = game.Players.LocalPlayer
+    if not player then return end
+
+    local char = player.Character
+    if char then
+        local humanoid = char:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.WalkSpeed = Options.MyToggle.Value and speed or 16
+        end
+    end
+end
+
+-- Toggle handler
+Toggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+    applySpeed()
+end)
+
+-- Reapply speed on respawn
+local player = game.Players.LocalPlayer
+player.CharacterAdded:Connect(function(char)
+    char:WaitForChild("Humanoid") -- Ensure humanoid exists
+    if Options.MyToggle.Value then
+        task.wait(0.1) -- slight delay to ensure stability
+        applySpeed()
+    end
+end)
+
+-- Infinite Jump Toggle
+local ToggleInfiniteJump = Tabs.Home:AddToggle("Toggle_InfiniteJump", {Title = "Infinite Jump", Default = false})
+ToggleInfiniteJump:OnChanged(function()
+    if Options.Toggle_InfiniteJump.Value then
+        local UserInputService = game:GetService("UserInputService")
+        local Player = game.Players.LocalPlayer
+        local Character = Player.Character or Player.CharacterAdded:Wait()
+        local Humanoid = Character:WaitForChild("Humanoid")
+
+        -- Connection to jump input
+        _G.InfiniteJumpConnection = UserInputService.JumpRequest:Connect(function()
+            if Options.Toggle_InfiniteJump.Value then
+                Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+            end
+        end)
+        print("Infinite Jump enabled")
+    else
+        if _G.InfiniteJumpConnection then
+            _G.InfiniteJumpConnection:Disconnect()
+            _G.InfiniteJumpConnection = nil
+        end
+        print("Infinite Jump disabled")
+    end
+end)
+
+-- No Clip Toggle
+local ToggleNoClip = Tabs.Home:AddToggle("Toggle_NoClip", {Title = "No Clip", Default = false})
+ToggleNoClip:OnChanged(function()
+    local RunService = game:GetService("RunService")
+    local Player = game.Players.LocalPlayer
+
+    if Options.Toggle_NoClip.Value then
+        _G.NoclipConnection = RunService.Stepped:Connect(function()
+            local Character = Player.Character
+            if Character then
+                for _, part in pairs(Character:GetDescendants()) do
+                    if part:IsA("BasePart") and part.CanCollide then
+                        part.CanCollide = false
+                    end
+                end
+            end
+        end)
+        print("No Clip enabled")
+    else
+        if _G.NoclipConnection then
+            _G.NoclipConnection:Disconnect()
+            _G.NoclipConnection = nil
+        end
+        print("No Clip disabled")
+    end
+end)
+
 -- Addons:
 -- SaveManager (Allows you to have a configuration system)
 -- InterfaceManager (Allows you to have a interface managment system)
