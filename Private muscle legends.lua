@@ -35,7 +35,7 @@ local Tabs = {
     Misc = Window:CreateTab{
         Title = "Miscellaneous",
         Icon = "command"
-    }
+    },
     Status = Window:CreateTab{
         Title = "Status",
         Icon = "circle-plus"
