@@ -681,11 +681,211 @@ end)
 Options.MyToggle:SetValue(false)
 
 Tabs.Auto:AddSection("Crab Cage")
+
+local AutoBuyCageToggle = Tabs.Auto:CreateToggle("MyToggle", {Title = "Auto Buy Cage", Default = false })
+
+AutoBuyCageToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
+local AutoPlaceCageToggle = Tabs.Auto:CreateToggle("MyToggle", {Title = "Auto Place Cage", Default = false })
+
+AutoPlaceCageToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
+local AutoClaimCageToggle = Tabs.Auto:CreateToggle("MyToggle", {Title = "Auto Claim Cage", Default = false })
+
+AutoClaimCageToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
+local UnrenderCrabCageToggle = Tabs.Auto:CreateToggle("MyToggle", {Title = "Unrender Players Crab Cage", Default = false })
+
+UnrenderCrabCageToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
+local AutoPreventCrabToggle = Tabs.Auto:CreateToggle("MyToggle", {Title = "Auto Prevent Crab Cage", Default = false })
+
+AutoPreventCrabToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
 Tabs.Auto:AddSection("Angler Fish")
+
+local AutoCollectLanternToggle = Tabs.Main:CreateToggle("MyToggle", {Title = "Auto Collect Lantern", Default = false })
+
+AutoCollectLanternToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
+
+
 Tabs.Auto:AddSection("Drill")
+
+local AutoDrillOToggle = Tabs.Auto:CreateToggle("MyToggle", {Title = "Auto Drill Obsidians", Default = false })
+
+AutoDrillOToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
+local AutoDrillLToggle = Tabs.Auto:CreateToggle("MyToggle", {Title = "Auto Drill Lava Crystal", Default = false })
+
+AutoDrillLToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
+local AutoDrillIToggle = Tabs.Auto:CreateToggle("MyToggle", {Title = "Auto Drill Ice Crystal", Default = false })
+
+AutoDrillIToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
+
+
 Tabs.Auto:AddSection("Bait")
+
+local ChooseBaitDropdown = Tabs.Auto:CreateDropdown("Dropdown", {
+    Title = "Choose Bait",
+    Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
+    Multi = false,
+    Default = 1,
+})
+
+ChooseBaitDropdown:SetValue("four")
+
+ChooseBaitDropdown:OnChanged(function(Value)
+    print("Dropdown changed:", Value)
+end)
+
+Tabs.Auto:CreateButton{
+    Title = "Refresh Choose Bait",
+    Description = "Very important button",
+    Callback = function()
+        Window:Dialog{
+            Title = "Title",
+            Content = "This is a dialog",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        print("Confirmed the dialog.")
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function()
+                        print("Cancelled the dialog.")
+                    end
+                }
+            }
+        }
+    end
+}
+
+local AutoEquipBaitToggle = Tabs.Auto:CreateToggle("MyToggle", {Title = "Auto Equip Bait", Default = false })
+
+AutoEquipBaitToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
+local AutoEquipRBaitToggle = Tabs.Auto:CreateToggle("MyToggle", {Title = "Auto Equip Random Bait", Default = false })
+
+AutoEquipRBaitToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
+local AutoBuyBaitCrateToggle = Tabs.Auto:CreateToggle("MyToggle", {Title = "Auto Buy Bait Crate", Default = false })
+
+AutoBuyBaitCrateToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
 Tabs.Auto:AddSection("Seller")
+
+local Paragraph = Tabs.Auto:CreateParagraph("Paragraph", {
+    Title = "All Fish Price",
+    Content = "dont know bitch"
+})
+
+local AutoSellAllToggle = Tabs.Auto:CreateToggle("MyToggle", {Title = "Auto Sell All", Default = false })
+
+AutoSellAllToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
+local AutoSellInHToggle = Tabs.Auto:CreateToggle("MyToggle", {Title = "Auto Sell In Hand", Default = false })
+
+AutoSellInHToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
+local Input = Tabs.Auto:CreateInput("Input", {
+    Title = "Sell Fish Name",
+    Default = "Default",
+    Placeholder = "Write your input there",
+    Numeric = false, -- Only allows numbers
+    Finished = false, -- Only calls callback when you press enter
+    Callback = function(Value)
+        print("Input changed:", Value)
+    end
+})
+
+local AutoSellFishToggle = Tabs.Auto:CreateToggle("MyToggle", {Title = "Auto Sell Fish", Default = false })
+
+AutoSellFishToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
 Tabs.Auto:AddSection("Latern Keeper")
+
+local AutoLantern500Toggle = Tabs.Auto:CreateToggle("MyToggle", {Title = "Auto Lantern Keeper [$500]", Default = false })
+
+AutoLantern500Toggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
+local AutoLantern1000Toggle = Tabs.Auto:CreateToggle("MyToggle", {Title = "Auto Lantern Keeper [$1000]", Default = false })
+
+AutoLantern1000Toggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
 Tabs.Auto:AddSection("Totem")
 Tabs.Auto:AddSection("Trade")
 Tabs.Auto:AddSection("Fillionaire")
