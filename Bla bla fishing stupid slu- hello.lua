@@ -507,14 +507,178 @@ Toggle_AutoReel:OnChanged(function()
 end)
 
 Tabs.Main:AddSection("Farming Zone")
+
+local SelectZoneDropdown = Tabs.Main:CreateDropdown("Dropdown", {
+    Title = "Select Zones",
+    Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
+    Multi = false,
+    Default = 1,
+})
+
+SelectZoneDropdown:SetValue("four")
+
+SelectZoneDropdown:OnChanged(function(Value)
+    print("Dropdown changed:", Value)
+end)
+
+local AutoFarmZoneToggle = Tabs.Main:CreateToggle("MyToggle", {Title = "Auto Farm Zones", Default = false })
+
+AutoFarmZoneToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
 Tabs.Main:AddSection("Farming Event")
+
+local SelectEventDropdown = Tabs.Main:CreateDropdown("Dropdown", {
+    Title = "Select Zones",
+    Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
+    Multi = false,
+    Default = 1,
+})
+
+SelectEventDropdown:SetValue("four")
+
+SelectEventDropdown:OnChanged(function(Value)
+    print("Dropdown changed:", Value)
+end)
+
+local AutoFarmEventToggle = Tabs.Main:CreateToggle("MyToggle", {Title = "Auto Farm Event", Default = false })
+
+AutoFarmEventToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
 Tabs.Main:AddSection("Farming Nuke")
+
+local AutoNukeToggle = Tabs.Main:CreateToggle("MyToggle", {Title = "Auto Nuke (Fully)", Default = false })
+
+AutoNukeToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
+local AutoUseNukeToggle = Tabs.Main:CreateToggle("MyToggle", {Title = "Auto Use Nuke", Default = false })
+
+AutoUseNukeToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
+local AutoNukeMinigameToggle = Tabs.Main:CreateToggle("MyToggle", {Title = "Auto Nuke Minigame", Default = false })
+
+AutoNukeMinigameToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
 Tabs.Main:AddSection("Treasure Hunt")
+
+local AutoFixTeasureToggle = Tabs.Main:CreateToggle("MyToggle", {Title = "Auto Fix Treasure Map", Default = false })
+
+AutoFixTeasureToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
+local AutoGetTreasureToggle = Tabs.Main:CreateToggle("MyToggle", {Title = "Auto Get Treasure Chest", Default = false })
+
+AutoGetTreasureToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
 Tabs.Main:AddSection("Sunken Treasure")
+
+local AutoGetSunkenToggle = Tabs.Main:CreateToggle("MyToggle", {Title = "Auto Get Sunken Treasure", Default = false })
+
+AutoGetSunkenToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
 Tabs.Main:AddSection("Crystal")
+
+local AutoGetCrystalToggle = Tabs.Main:CreateToggle("MyToggle", {Title = "Auto Get Crystal", Default = false })
+
+AutoGetCrystalToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
 Tabs.Main:AddSection("Bestiary Map")
+
+local ChooseBestiaryDropdown = Tabs.Main:CreateDropdown("Dropdown", {
+    Title = "Choose Bestiary Map",
+    Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
+    Multi = false,
+    Default = 1,
+})
+
+ChooseBestiaryDropdown:SetValue("four")
+
+ChooseBestiaryDropdown:OnChanged(function(Value)
+    print("Dropdown changed:", Value)
+end)
+
+local AutoBestiaryToggle = Tabs.Main:CreateToggle("MyToggle", {Title = "Auto Bestiary Map", Default = false })
+
+AutoBestiaryToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
 Tabs.Main:AddSection("Rod")
+
+local ChooseListRodDropdown = Tabs.Main:CreateDropdown("Dropdown", {
+    Title = "Choose List Rod",
+    Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
+    Multi = false,
+    Default = 1,
+})
+
+ChooseListRodDropdown:SetValue("four")
+
+ChooseListRodDropdown:OnChanged(function(Value)
+    print("Dropdown changed:", Value)
+end)
+
+local Aut0rod_Toggle = Tabs.Main:CreateToggle("MyToggle", {Title = "Auto Rod", Default = false })
+
+Aut0rod_Toggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
 Tabs.Main:AddSection("Summon")
+
+local AutoSumMegToggle = Tabs.Main:CreateToggle("MyToggle", {Title = "Auto Summon Megalodon", Default = false })
+
+AutoSumMegToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
+
+local AutoSumWhaleToggle = Tabs.Main:CreateToggle("MyToggle", {Title = "Auto Summon Whale", Default = false })
+
+AutoSumWhaleToggle:OnChanged(function()
+    print("Toggle changed:", Options.MyToggle.Value)
+end)
+
+Options.MyToggle:SetValue(false)
 
 Tabs.Auto:AddSection("Crab Cage")
 Tabs.Auto:AddSection("Angler Fish")
