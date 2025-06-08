@@ -724,7 +724,7 @@ Options.MyToggle:SetValue(false)
 
 Tabs.Auto:AddSection("Angler Fish")
 
-local AutoCollectLanternToggle = Tabs.Main:CreateToggle("MyToggle", {Title = "Auto Collect Lantern", Default = false })
+local AutoCollectLanternToggle = Tabs.Auto:CreateToggle("MyToggle", {Title = "Auto Collect Lantern", Default = false })
 
 AutoCollectLanternToggle:OnChanged(function()
     print("Toggle changed:", Options.MyToggle.Value)
