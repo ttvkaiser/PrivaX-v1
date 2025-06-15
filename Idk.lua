@@ -354,9 +354,9 @@ fastWeightToggle:OnChanged(function(state)
                 task.wait(0.1)
             end
 
-            local attackTime = tool:FindFirstChild("attackTime")
-            if attackTime then
-                attackTime.Value = 0
+            local weightTime = tool:FindFirstChild("weightTime")
+            if weightTime then
+                weightTime.Value = 0
             end
 
             tool:Activate()
@@ -380,9 +380,9 @@ fastPushupToggle:OnChanged(function(state)
                 task.wait(0.1)
             end
 
-            local attackTime = tool:FindFirstChild("attackTime")
-            if attackTime then
-                attackTime.Value = 0
+            local pushupTime = tool:FindFirstChild("pushupTime")
+            if pushupTime then
+                pushupTime.Value = 0
             end
 
             tool:Activate()
@@ -406,9 +406,9 @@ fastSitupToggle:OnChanged(function(state)
                 task.wait(0.1)
             end
 
-            local attackTime = tool:FindFirstChild("attackTime")
-            if attackTime then
-                attackTime.Value = 0
+            local situpTime = tool:FindFirstChild("situpTime")
+            if situpTime then
+                situpTime.Value = 0
             end
 
             tool:Activate()
@@ -432,9 +432,9 @@ fastHandstandToggle:OnChanged(function(state)
                 task.wait(0.1)
             end
 
-            local attackTime = tool:FindFirstChild("attackTime")
-            if attackTime then
-                attackTime.Value = 0
+            local handstandTime = tool:FindFirstChild("handstandTime")
+            if handstandTime then
+                handstandTime.Value = 0
             end
 
             tool:Activate()
