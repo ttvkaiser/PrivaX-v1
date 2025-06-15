@@ -3,7 +3,7 @@ local SaveManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.
 local InterfaceManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ActualMasterOogway/Fluent-Renewed/master/Addons/InterfaceManager.luau"))()
  
 local Window = Library:CreateWindow{
-    Title = "Nebula Hub | Game: Muscle Legends | Version [v.1.7.3]",
+    Title = "Nebula Hub | Game: Muscle Legends | Version [v.1.8.1]",
     SubTitle = "by ttvkaiser",
     TabWidth = 160,
     Size = UDim2.fromOffset(1087, 690.5),
@@ -304,6 +304,146 @@ autoHandstandToggle:OnChanged(function(state)
     end
 end)
 
+Tabs.Main:AddSection("Auto Fast Farm")
+
+local Toggle = Tabs.Main:CreateToggle("AutoPunchWithAnim", {
+    Title = "Auto Fast Punch",
+    Default = false
+})
+
+Toggle:OnChanged(function(state)
+    while state and Toggle.Value do
+        local player = game.Players.LocalPlayer
+        local char = game.Workspace:FindFirstChild(player.Name)
+        local punchTool = player.Backpack:FindFirstChild("Punch") or (char and char:FindFirstChild("Punch"))
+
+        if punchTool then
+            if punchTool.Parent ~= char then
+                punchTool.Parent = char -- Equip
+                task.wait(0.1) -- small delay to ensure it's equipped
+            end
+
+            -- Fast punch tweak
+            local attackTime = punchTool:FindFirstChild("attackTime")
+            if attackTime then
+                attackTime.Value = 0
+            end
+
+            -- Simulate tool activation (triggers animation + event)
+            punchTool:Activate()
+        else
+            warn("Punch tool not found")
+            Toggle:SetValue(false)
+        end
+
+        task.wait()
+    end
+end)
+
+local fastWeightToggle = Tabs.Main:CreateToggle("FastWeight", {Title = "Auto Fast Weight", Default = false})
+
+fastWeightToggle:OnChanged(function(state)
+    while state and fastWeightToggle.Value do
+        local player = game.Players.LocalPlayer
+        local char = player.Character
+        local tool = player.Backpack:FindFirstChild("Weight") or (char and char:FindFirstChild("Weight"))
+
+        if tool then
+            if tool.Parent ~= char then
+                tool.Parent = char
+                task.wait(0.1)
+            end
+
+            local attackTime = tool:FindFirstChild("attackTime")
+            if attackTime then
+                attackTime.Value = 0
+            end
+
+            tool:Activate()
+        end
+
+        task.wait()
+    end
+end)
+
+local fastPushupToggle = Tabs.Main:CreateToggle("FastPushups", {Title = "Auto Fast Pushups", Default = false})
+
+fastPushupToggle:OnChanged(function(state)
+    while state and fastPushupToggle.Value do
+        local player = game.Players.LocalPlayer
+        local char = player.Character
+        local tool = player.Backpack:FindFirstChild("Pushups") or (char and char:FindFirstChild("Pushups"))
+
+        if tool then
+            if tool.Parent ~= char then
+                tool.Parent = char
+                task.wait(0.1)
+            end
+
+            local attackTime = tool:FindFirstChild("attackTime")
+            if attackTime then
+                attackTime.Value = 0
+            end
+
+            tool:Activate()
+        end
+
+        task.wait()
+    end
+end)
+
+local fastSitupToggle = Tabs.Main:CreateToggle("FastSitups", {Title = "Auto Fast Situps", Default = false})
+
+fastSitupToggle:OnChanged(function(state)
+    while state and fastSitupToggle.Value do
+        local player = game.Players.LocalPlayer
+        local char = player.Character
+        local tool = player.Backpack:FindFirstChild("Situps") or (char and char:FindFirstChild("Situps"))
+
+        if tool then
+            if tool.Parent ~= char then
+                tool.Parent = char
+                task.wait(0.1)
+            end
+
+            local attackTime = tool:FindFirstChild("attackTime")
+            if attackTime then
+                attackTime.Value = 0
+            end
+
+            tool:Activate()
+        end
+
+        task.wait()
+    end
+end)
+
+local fastHandstandToggle = Tabs.Main:CreateToggle("FastHandstands", {Title = "Auto Fast Handstands", Default = false})
+
+fastHandstandToggle:OnChanged(function(state)
+    while state and fastHandstandToggle.Value do
+        local player = game.Players.LocalPlayer
+        local char = player.Character
+        local tool = player.Backpack:FindFirstChild("Handstand") or (char and char:FindFirstChild("Handstand"))
+
+        if tool then
+            if tool.Parent ~= char then
+                tool.Parent = char
+                task.wait(0.1)
+            end
+
+            local attackTime = tool:FindFirstChild("attackTime")
+            if attackTime then
+                attackTime.Value = 0
+            end
+
+            tool:Activate()
+        end
+
+        task.wait()
+    end
+end)
+
 Tabs.Main:AddSection("Auto Jungle")
 
 local jungleBenchToggle = Tabs.Main:CreateToggle("JungleBench", {Title = "Auto Jungle Bench", Default = false})
@@ -342,42 +482,6 @@ jungleSquatToggle:OnChanged(function(State)
                 task.wait(0.1)
             end
         end)
-    end
-end)
-
-Tabs.Main:AddSection("Auto Fast Farm")
-
-local Toggle = Tabs.Main:CreateToggle("AutoPunchWithAnim", {
-    Title = "Auto Fast Punch",
-    Default = false
-})
-
-Toggle:OnChanged(function(state)
-    while state and Toggle.Value do
-        local player = game.Players.LocalPlayer
-        local char = game.Workspace:FindFirstChild(player.Name)
-        local punchTool = player.Backpack:FindFirstChild("Punch") or (char and char:FindFirstChild("Punch"))
-
-        if punchTool then
-            if punchTool.Parent ~= char then
-                punchTool.Parent = char -- Equip
-                task.wait(0.1) -- small delay to ensure it's equipped
-            end
-
-            -- Fast punch tweak
-            local attackTime = punchTool:FindFirstChild("attackTime")
-            if attackTime then
-                attackTime.Value = 0
-            end
-
-            -- Simulate tool activation (triggers animation + event)
-            punchTool:Activate()
-        else
-            warn("Punch tool not found")
-            Toggle:SetValue(false)
-        end
-
-        task.wait()
     end
 end)
 
