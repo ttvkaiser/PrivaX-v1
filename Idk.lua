@@ -278,6 +278,66 @@ Toggle:OnChanged(function(state)
     end
 end)
 
+local autoWeightToggle = Tabs.Main:CreateToggle("AutoWeight", {Title = "Auto Weight", Default = false})
+autoWeightToggle:OnChanged(function(state)
+    if state then
+        task.spawn(function()
+            while autoWeightToggle.Value do
+                local tool = game.Players.LocalPlayer.Character:FindFirstChild("Weight")
+                if tool and tool:FindFirstChild("RemoteEvent") then
+                    tool.RemoteEvent:FireServer()
+                end
+                task.wait(0.2)
+            end
+        end)
+    end
+end)
+
+local autoPushupToggle = Tabs.Main:CreateToggle("AutoPushups", {Title = "Auto Pushups", Default = false})
+autoPushupToggle:OnChanged(function(state)
+    if state then
+        task.spawn(function()
+            while autoPushupToggle.Value do
+                local tool = game.Players.LocalPlayer.Character:FindFirstChild("Pushups")
+                if tool and tool:FindFirstChild("RemoteEvent") then
+                    tool.RemoteEvent:FireServer()
+                end
+                task.wait(0.2)
+            end
+        end)
+    end
+end)
+
+local autoSitupToggle = Tabs.Main:CreateToggle("AutoSitups", {Title = "Auto Situps", Default = false})
+autoSitupToggle:OnChanged(function(state)
+    if state then
+        task.spawn(function()
+            while autoSitupToggle.Value do
+                local tool = game.Players.LocalPlayer.Character:FindFirstChild("Situps")
+                if tool and tool:FindFirstChild("RemoteEvent") then
+                    tool.RemoteEvent:FireServer()
+                end
+                task.wait(0.2)
+            end
+        end)
+    end
+end)
+
+local autoHandstandToggle = Tabs.Main:CreateToggle("AutoHandstands", {Title = "Auto Handstands", Default = false})
+autoHandstandToggle:OnChanged(function(state)
+    if state then
+        task.spawn(function()
+            while autoHandstandToggle.Value do
+                local tool = game.Players.LocalPlayer.Character:FindFirstChild("Handstand")
+                if tool and tool:FindFirstChild("RemoteEvent") then
+                    tool.RemoteEvent:FireServer()
+                end
+                task.wait(0.2)
+            end
+        end)
+    end
+end)
+
 Tabs.Main:AddSection("Auto Jungle")
 
 local jungleBenchToggle = Tabs.Main:CreateToggle("JungleBench", {Title = "Auto Jungle Bench", Default = false})
