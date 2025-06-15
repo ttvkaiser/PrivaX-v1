@@ -1012,6 +1012,44 @@ Tabs.Misc:CreateButton({
     end
 })
 
+local LockPosToggle = Tabs.Misc:CreateToggle("LockCharPos", {
+    Title = "🧊 Lock Character Position",
+    Default = false
+})
+
+local RunService = game:GetService("RunService")
+local player = game.Players.LocalPlayer
+local hrp = nil
+local anchorConn = nil
+
+LockPosToggle:OnChanged(function(state)
+    hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+
+    if state and hrp then
+        anchorConn = RunService.Stepped:Connect(function()
+            if hrp then
+                hrp.Anchored = true
+            end
+        end)
+    else
+        if anchorConn then
+            anchorConn:Disconnect()
+            anchorConn = nil
+        end
+        if hrp then
+            hrp.Anchored = false
+        end
+    end
+end)
+
+-- Optional: Re-lock when character respawns
+player.CharacterAdded:Connect(function(char)
+    hrp = char:WaitForChild("HumanoidRootPart", 5)
+    if LockPosToggle.Value and hrp then
+        hrp.Anchored = true
+    end
+end)
+
 -- Disable Trade Toggle
 Tabs.Misc:CreateToggle("DisableTrade", {Title = "Disable Trade", Default = false}):OnChanged(function(state)
     local tradeEvent = game:GetService("ReplicatedStorage").rEvents.tradingEvent
