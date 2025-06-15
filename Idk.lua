@@ -299,8 +299,8 @@ autoPushupToggle:OnChanged(function(state)
         task.spawn(function()
             while autoPushupToggle.Value do
                 local tool = game.Players.LocalPlayer.Character:FindFirstChild("Pushups")
-                if tool and tool:FindFirstChild("RemoteEvent") then
-                    tool.RemoteEvent:FireServer()
+                if tool and tool:IsA("Tool") then
+                    tool:Activate()
                 end
                 task.wait(0.2)
             end
@@ -314,8 +314,8 @@ autoSitupToggle:OnChanged(function(state)
         task.spawn(function()
             while autoSitupToggle.Value do
                 local tool = game.Players.LocalPlayer.Character:FindFirstChild("Situps")
-                if tool and tool:FindFirstChild("RemoteEvent") then
-                    tool.RemoteEvent:FireServer()
+                if tool and tool:IsA("Tool") then
+                    tool:Activate()
                 end
                 task.wait(0.2)
             end
@@ -329,8 +329,8 @@ autoHandstandToggle:OnChanged(function(state)
         task.spawn(function()
             while autoHandstandToggle.Value do
                 local tool = game.Players.LocalPlayer.Character:FindFirstChild("Handstand")
-                if tool and tool:FindFirstChild("RemoteEvent") then
-                    tool.RemoteEvent:FireServer()
+                if tool and tool:IsA("Tool") then
+                    tool:Activate()
                 end
                 task.wait(0.2)
             end
