@@ -210,7 +210,7 @@ Toggle:OnChanged(function(State)
     end
 end)
 
-local Toggle = Tabs.Killing:CreateToggle("AutoPunchWithAnim", {
+local Toggle = Tabs.Main:CreateToggle("AutoPunchWithAnim", {
     Title = "Auto Fast Punch",
     Default = false
 })
@@ -244,7 +244,7 @@ Toggle:OnChanged(function(state)
     end
 end)
 
-local Toggle = Tabs.Killing:CreateToggle("AutoNormalPunch", {
+local Toggle = Tabs.Main:CreateToggle("AutoNormalPunch", {
     Title = "Auto Normal Punch",
     Default = false
 })
