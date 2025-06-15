@@ -3,7 +3,7 @@ local SaveManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.
 local InterfaceManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ActualMasterOogway/Fluent-Renewed/master/Addons/InterfaceManager.luau"))()
  
 local Window = Library:CreateWindow{
-    Title = "Nebula Hub | Game: Muscle Legends | Version [v.1.0.1]",
+    Title = "Nebula Hub | Game: Muscle Legends | Version [v.1.7.3]",
     SubTitle = "by ttvkaiser",
     TabWidth = 160,
     Size = UDim2.fromOffset(1087, 690.5),
@@ -284,8 +284,8 @@ autoWeightToggle:OnChanged(function(state)
         task.spawn(function()
             while autoWeightToggle.Value do
                 local tool = game.Players.LocalPlayer.Character:FindFirstChild("Weight")
-                if tool and tool:FindFirstChild("RemoteEvent") then
-                    tool.RemoteEvent:FireServer()
+                if tool and tool:IsA("Tool") then
+                    tool:Activate()
                 end
                 task.wait(0.2)
             end
