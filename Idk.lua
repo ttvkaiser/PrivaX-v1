@@ -210,40 +210,6 @@ Toggle:OnChanged(function(State)
     end
 end)
 
-local Toggle = Tabs.Main:CreateToggle("AutoPunchWithAnim", {
-    Title = "Auto Fast Punch",
-    Default = false
-})
-
-Toggle:OnChanged(function(state)
-    while state and Toggle.Value do
-        local player = game.Players.LocalPlayer
-        local char = game.Workspace:FindFirstChild(player.Name)
-        local punchTool = player.Backpack:FindFirstChild("Punch") or (char and char:FindFirstChild("Punch"))
-
-        if punchTool then
-            if punchTool.Parent ~= char then
-                punchTool.Parent = char -- Equip
-                task.wait(0.1) -- small delay to ensure it's equipped
-            end
-
-            -- Fast punch tweak
-            local attackTime = punchTool:FindFirstChild("attackTime")
-            if attackTime then
-                attackTime.Value = 0
-            end
-
-            -- Simulate tool activation (triggers animation + event)
-            punchTool:Activate()
-        else
-            warn("Punch tool not found")
-            Toggle:SetValue(false)
-        end
-
-        task.wait()
-    end
-end)
-
 local Toggle = Tabs.Main:CreateToggle("AutoNormalPunch", {
     Title = "Auto Normal Punch",
     Default = false
@@ -376,6 +342,42 @@ jungleSquatToggle:OnChanged(function(State)
                 task.wait(0.1)
             end
         end)
+    end
+end)
+
+Tabs.Main:AddSection("Auto Fast Farm")
+
+local Toggle = Tabs.Main:CreateToggle("AutoPunchWithAnim", {
+    Title = "Auto Fast Punch",
+    Default = false
+})
+
+Toggle:OnChanged(function(state)
+    while state and Toggle.Value do
+        local player = game.Players.LocalPlayer
+        local char = game.Workspace:FindFirstChild(player.Name)
+        local punchTool = player.Backpack:FindFirstChild("Punch") or (char and char:FindFirstChild("Punch"))
+
+        if punchTool then
+            if punchTool.Parent ~= char then
+                punchTool.Parent = char -- Equip
+                task.wait(0.1) -- small delay to ensure it's equipped
+            end
+
+            -- Fast punch tweak
+            local attackTime = punchTool:FindFirstChild("attackTime")
+            if attackTime then
+                attackTime.Value = 0
+            end
+
+            -- Simulate tool activation (triggers animation + event)
+            punchTool:Activate()
+        else
+            warn("Punch tool not found")
+            Toggle:SetValue(false)
+        end
+
+        task.wait()
     end
 end)
 
