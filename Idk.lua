@@ -354,9 +354,9 @@ fastWeightToggle:OnChanged(function(state)
                 task.wait(0.1)
             end
 
-            local weightTime = tool:FindFirstChild("weightTime")
-            if weightTime then
-                weightTime.Value = 0
+            local workoutTime = tool:FindFirstChild("workoutTime")
+            if workoutTime then
+                workoutTime.Value = 0
             end
 
             tool:Activate()
