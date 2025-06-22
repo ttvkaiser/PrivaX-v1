@@ -716,7 +716,7 @@ Tabs.Killing:CreateButton({
         local player = game.Players.LocalPlayer
         local punch = player.Backpack:FindFirstChild("Punch") or (game.Workspace:FindFirstChild(player.Name) and game.Workspace[player.Name]:FindFirstChild("Punch"))
         if punch and punch:FindFirstChild("attackTime") then
-            punch.attackTime.Value = 0
+            punch.attackTime.Value = 0.065
         end
     end
 })
@@ -736,25 +736,61 @@ Tabs.Killing:CreateButton({
 -- Whitelist Table
 local whitelist = {}
 
-Tabs.Killing:CreateInput("WhitelistBox", {
-    Title = "Whitelist Player",
-    Default = "",
-    Placeholder = "Enter username...",
-    Numeric = false,
-    Callback = function(text)
-        local target = game.Players:FindFirstChild(text)
-        if target then
-            whitelist[target.Name] = true
-        end
-    end
+local Dropdown = Tabs.Killing:CreateDropdown("WhitelistDropdown", {
+    Title = "Whitelist Player(s)",
+    Values = {},
+    Multi = true,
+    Default = {},
 })
 
--- Auto Kill Toggle
+-- Fill the dropdown with current player names
+for _, player in ipairs(game.Players:GetPlayers()) do
+    table.insert(Dropdown.Options.Values, player.Name)
+end
+Dropdown:SetValues(Dropdown.Options.Values)
+
+-- Update values when players join
+game.Players.PlayerAdded:Connect(function(player)
+    table.insert(Dropdown.Options.Values, player.Name)
+    Dropdown:SetValues(Dropdown.Options.Values)
+end)
+
+-- Remove from dropdown when players leave
+game.Players.PlayerRemoving:Connect(function(player)
+    for i, name in ipairs(Dropdown.Options.Values) do
+        if name == player.Name then
+            table.remove(Dropdown.Options.Values, i)
+            break
+        end
+    end
+    Dropdown:SetValues(Dropdown.Options.Values)
+end)
+
+-- Sync whitelist with selected players
+Dropdown:OnChanged(function(selectedPlayers)
+    -- Clear whitelist
+    table.clear(whitelist)
+    
+    -- Set new whitelist
+    for _, name in ipairs(selectedPlayers) do
+        whitelist[name] = true
+    end
+    
+    print("Whitelisted:", selectedPlayers)
+end)
+
 local Toggle = Tabs.Killing:CreateToggle("AutoKill", {Title = "Auto Kill", Default = false})
 Toggle:OnChanged(function(state)
     while state and Toggle.Value do
         local player = game.Players.LocalPlayer
 
+        -- Auto punch setup
+        local punch = player.Backpack:FindFirstChild("Punch") or (player.Character and player.Character:FindFirstChild("Punch"))
+        if punch and punch:FindFirstChild("attackTime") then
+            punch.attackTime.Value = 0.065
+        end
+
+        -- Auto kill logic
         for _, target in ipairs(game.Players:GetPlayers()) do
             if target ~= player and not whitelist[target.Name] then
                 local root = target.Character and target.Character:FindFirstChild("HumanoidRootPart")
@@ -769,6 +805,7 @@ Toggle:OnChanged(function(state)
                 end
             end
         end
+
         task.wait(0.1)
     end
 end)
