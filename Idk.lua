@@ -779,9 +779,9 @@ Dropdown:OnChanged(function(selectedPlayers)
     print("Whitelisted:", selectedPlayers)
 end)
 
-local Toggle = Tabs.Killing:CreateToggle("AutoKill", {Title = "Auto Kill", Default = false})
-Toggle:OnChanged(function(state)
-    while state and Toggle.Value do
+local AutokillToggle = Tabs.Killing:CreateToggle("AutoKill", {Title = "Auto Kill", Default = false})
+AutokillToggle:OnChanged(function(state)
+    while state and AutokillToggle.Value do
         local player = game.Players.LocalPlayer
 
         -- Auto punch setup
