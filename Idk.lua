@@ -733,49 +733,47 @@ Tabs.Killing:CreateButton({
     end
 })
 
--- Whitelist Table
+	-- Whitelist Table
 local whitelist = {}
+local playerList = {}
 
-local Dropdown = Tabs.Killing:CreateDropdown("WhitelistDropdown", {
+-- Create Dropdown
+local Dropdown = Tabs.Killing:AddDropdown("WhitelistDropdown", {
     Title = "Whitelist Player(s)",
     Values = {},
     Multi = true,
     Default = {},
 })
 
--- Fill the dropdown with current player names
+-- Populate initially
 for _, player in ipairs(game.Players:GetPlayers()) do
-    table.insert(Dropdown.Options.Values, player.Name)
+    table.insert(playerList, player.Name)
 end
-Dropdown:SetValues(Dropdown.Options.Values)
+Dropdown:SetValues(playerList)
 
--- Update values when players join
+-- Update on PlayerAdded
 game.Players.PlayerAdded:Connect(function(player)
-    table.insert(Dropdown.Options.Values, player.Name)
-    Dropdown:SetValues(Dropdown.Options.Values)
+    table.insert(playerList, player.Name)
+    Dropdown:SetValues(playerList)
 end)
 
--- Remove from dropdown when players leave
+-- Update on PlayerRemoving
 game.Players.PlayerRemoving:Connect(function(player)
-    for i, name in ipairs(Dropdown.Options.Values) do
+    for i, name in ipairs(playerList) do
         if name == player.Name then
-            table.remove(Dropdown.Options.Values, i)
+            table.remove(playerList, i)
             break
         end
     end
-    Dropdown:SetValues(Dropdown.Options.Values)
+    Dropdown:SetValues(playerList)
 end)
 
--- Sync whitelist with selected players
+-- Sync whitelist
 Dropdown:OnChanged(function(selectedPlayers)
-    -- Clear whitelist
     table.clear(whitelist)
-    
-    -- Set new whitelist
     for _, name in ipairs(selectedPlayers) do
         whitelist[name] = true
     end
-    
     print("Whitelisted:", selectedPlayers)
 end)
 
